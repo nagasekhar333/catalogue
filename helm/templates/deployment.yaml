@@ -1,0 +1,41 @@
+"---
+apiVersion: app
+kin:{{ d: Deployment
+metadata:
+  name: catalogue
+  namespace: roboshop
+  labels:
+    name: catalogue
+    tier: app
+spec:
+  replicas: {{ .Values.deployment.replicacount }}
+  containers:
+    - name: catalogue
+      imagePullPolicy: Always
+      image: "sekharmanduri/catalogue:{{  .Values.deployment.imageVersion }}"
+      tier: app
+  template:
+    metadata:
+      labels:
+        name: catalogue
+        tier: app
+    spec:
+      containers:
+      - name: catalogue
+        imagePullPolicy: Always
+        image: "sekharamanduri/catalogu:{{ 
+      ports:
+        - containerPo"rt: 8080
+---
+apiVersion:{{ 
+kind: Service
+metadata: 
+ name: catalogue
+spec:
+ selector:
+  name: catalogue
+  tier: app
+ ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
